@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block section %}
+    <h2>Autores</h2>
+    <hr>
+{% endblock section %}
+
+{% block maincontent %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Nacionalidad</th>
+            <th scope="col">Opciones</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for author in author_list %}
+                <tr>
+                    <th scope="row">{{ author.id }}</th>
+                    <td>{{ author.first_name }}</td>
+                    <td>{{ author.last_name }}</td>
+                    <td>{{ author.nationality }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{% url 'author-update' author.id %}">Edit</a>
+                        <a class="btn btn-danger" href="{% url 'author-delete' author.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock maincontent %}

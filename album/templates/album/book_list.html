@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block section %}
+    <h2>Libros</h2>
+    <hr>
+{% endblock section %}
+
+{% block maincontent %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Título</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Editorial</th>
+            <th scope="col">Opciones</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for book in book_list %}
+                <tr>
+                    <th scope="row">{{ book.id }}</th>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.id_author }}</td>
+                    <td>{{ book.id_publisher }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{% url 'book-update' book.id %}">Edit</a>
+                        <a class="btn btn-danger" href="{% url 'book-delete' book.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock maincontent %}
